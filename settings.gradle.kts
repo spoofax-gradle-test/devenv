@@ -1,4 +1,4 @@
-rootProject.name = "spoofax-composite-build"
+rootProject.name = "devenv"
 
 includeBuild("coronium")
 includeBuild("log")
