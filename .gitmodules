@@ -1,0 +1,20 @@
+[submodule "coronium"]
+	path = coronium
+	url = git@github.com:spoofax-gradle-test/coronium.git
+	branch = master
+[submodule "spoofax.eclipse"]
+	path = spoofax.eclipse
+	url = git@github.com:spoofax-gradle-test/spoofax.eclipse.git
+	branch = master
+[submodule "pie"]
+	path = pie
+	url = git@github.com:spoofax-gradle-test/pie.git
+	branch = master
+[submodule "spoofax"]
+	path = spoofax
+	url = git@github.com:spoofax-gradle-test/spoofax.git
+	branch = master
+[submodule "log"]
+	path = log
+	url = git@github.com:spoofax-gradle-test/log.git
+	branch = master
