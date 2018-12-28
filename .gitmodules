@@ -18,3 +18,7 @@
 	path = log
 	url = ../log.git
 	branch = master
+[submodule "gitonium"]
+	path = gitonium
+	url = ../gitonium.git
+	branch = master
