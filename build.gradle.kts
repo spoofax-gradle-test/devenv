@@ -6,6 +6,9 @@ tasks {
     dependsOn(gradle.includedBuilds.map { it.task(":cleanAll") })
   }
 
+  register("buildGitonium") {
+    dependsOn(gradle.includedBuild("gitonium").task(":buildAll"))
+  }
   register("buildCoronium") {
     dependsOn(gradle.includedBuild("coronium").task(":buildAll"))
   }
