@@ -1,24 +1,24 @@
 [submodule "coronium"]
 	path = coronium
 	url = ../coronium.git
-	branch = master
+	branch = develop
 [submodule "spoofax.eclipse"]
 	path = spoofax.eclipse
 	url = ../spoofax.eclipse.git
-	branch = master
+	branch = develop
 [submodule "pie"]
 	path = pie
 	url = ../pie.git
-	branch = master
+	branch = develop
 [submodule "spoofax"]
 	path = spoofax
 	url = ../spoofax.git
-	branch = master
+	branch = develop
 [submodule "log"]
 	path = log
 	url = ../log.git
-	branch = master
+	branch = develop
 [submodule "gitonium"]
 	path = gitonium
 	url = ../gitonium.git
-	branch = master
+	branch = develop
