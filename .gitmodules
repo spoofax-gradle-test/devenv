@@ -22,3 +22,7 @@
 	path = gitonium
 	url = ../gitonium.git
 	branch = develop
+[submodule "gradle-config"]
+	path = gradle-config
+	url = ../gradle-config.git
+	branch = develop
