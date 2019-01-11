@@ -1,38 +1,24 @@
-tasks {
-  register("buildAll") {
-    dependsOn(gradle.includedBuilds.map { it.task(":buildAll") })
+fun TaskContainerScope.registerCompositeBuildTask(name: String, description: String) {
+  register(name) {
+    this.group = "composite build"
+    this.description = description
+    this.dependsOn(gradle.includedBuilds.map { it.task(":$name") })
   }
-  register("cleanAll") {
-    dependsOn(gradle.includedBuilds.map { it.task(":cleanAll") })
-  }
+}
 
-  register("buildGitonium") {
-    dependsOn(gradle.includedBuild("gitonium").task(":buildAll"))
-  }
-  register("buildCoronium") {
-    dependsOn(gradle.includedBuild("coronium").task(":buildAll"))
-  }
+tasks {
+  registerCompositeBuildTask("cleanAll", "Deletes the build directory for all projects in the composite build.")
+  registerCompositeBuildTask("checkAll", "Runs all checks for all projects in the composite build.")
+  registerCompositeBuildTask("assembleAll", "Assembles the outputs for all projects in the composite build.")
+  registerCompositeBuildTask("buildAll", "Assembles and tests all projects in the composite build.")
+  registerCompositeBuildTask("publishAll", "Publishes all publications produced by all projects in the composite build.")
 
   register("runSpoofaxCli") {
+    group = "application"
     dependsOn(gradle.includedBuild("spoofax").task(":spoofax.cli:run"))
   }
   register("runSpoofaxEclipse") {
+    group = "application"
     dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:run"))
-  }
-
-  register("spoofaxEclipseRepositoryDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:dependencies"))
-  }
-  register("spoofaxEclipseFeatureDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.feature:dependencies"))
-  }
-  register("spoofaxEclipseMetaFeatureDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.meta.feature:dependencies"))
-  }
-  register("spoofaxEclipsePluginDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.plugin:dependencies"))
-  }
-  register("spoofaxEclipseMetaPluginDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.meta.plugin:dependencies"))
   }
 }
