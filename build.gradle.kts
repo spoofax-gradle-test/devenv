@@ -21,4 +21,9 @@ tasks {
     group = "application"
     dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:run"))
   }
+
+  wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    setJarFile(".gradlew/wrapper/gradle-wrapper.jar")
+  }
 }
