@@ -1,14 +1,32 @@
+# Nested repositories
+/coronium
+!/coronium/**
+/gitonium
+!/gitonium/**
+/gradle.config
+!/gradle.config/**
+/jenkins.pipeline
+!/jenkins.pipeline/**
+/log/
+!/log/**
+/pie
+!/pie/**
+/spoofax
+!/spoofax/**
+/spoofax.eclipse
+!/spoofax.eclipse/**
+
 # Gradle
-**/.gradle
-**/build/
+/.gradle
+/build/
 
 # IntelliJ
-**/.idea
-**/out
+/.idea
+/out
 
 # Eclipse
-**/.project
-**/.settings
-**/.classpath
-**/.factorypath
-**/bin
+/.project
+/.settings
+/.classpath
+/.factorypath
+/bin
