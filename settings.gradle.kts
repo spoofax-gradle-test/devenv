@@ -1,6 +1,3 @@
-import java.nio.file.Files
-import java.util.*
-
 rootProject.name = "devenv"
 
 pluginManagement {
