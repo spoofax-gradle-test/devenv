@@ -1,18 +1,34 @@
-fun TaskContainerScope.registerCompositeBuildTask(name: String, description: String) {
-  register(name) {
-    this.group = "composite build"
-    this.description = description
-    this.dependsOn(gradle.includedBuilds.map { it.task(":$name") })
-  }
+plugins {
+  id("org.metaborg.gradle.config.devenv") version "0.4.3"
 }
 
-tasks {
+devenv {
+  repoUrlPrefix = "git@github.com:spoofax-gradle-test"
+
+  // Gradle plugins.
+  registerRepo("gradle.config")
+  registerRepo("gitonium")
+  registerRepo("coronium")
+
+  // Libraries and applications.
+  registerRepo("log")
+  registerRepo("pie")
+  registerRepo("spoofax")
+  registerRepo("spoofax.eclipse")
+  
+  // Continuous integration.
+  registerRepo("jenkins.pipeline")
+}
+
+devenv {
   registerCompositeBuildTask("cleanAll", "Deletes the build directory for all projects in the composite build.")
   registerCompositeBuildTask("checkAll", "Runs all checks for all projects in the composite build.")
   registerCompositeBuildTask("assembleAll", "Assembles the outputs for all projects in the composite build.")
   registerCompositeBuildTask("buildAll", "Assembles and tests all projects in the composite build.")
   registerCompositeBuildTask("publishAll", "Publishes all publications produced by all projects in the composite build.")
+}
 
+tasks {
   register("runSpoofaxCli") {
     group = "application"
     dependsOn(gradle.includedBuild("spoofax").task(":spoofax.cli:run"))
