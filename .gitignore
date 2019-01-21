@@ -1,24 +1,13 @@
-# Nested repositories
-/coronium
-!/coronium/**
-/gitonium
-!/gitonium/**
-/gradle.config
-!/gradle.config/**
-/jenkins.pipeline
-!/jenkins.pipeline/**
-/log/
-!/log/**
-/pie
-!/pie/**
-/spoofax
-!/spoofax/**
-/spoofax.eclipse
-!/spoofax.eclipse/**
+# Ignore all subdirectories, because they are nested Git repositories.
+/*/
+# Unignore files in subdirectories, so that they do not show up as ignored in IntelliJ. Git will not track files in nested Git repositories.
+!/*/**
+# Unignore gradle wrapper subdirectory.
+!/.gradlew
 
 # Gradle
 /.gradle
-/build/
+/build
 
 # IntelliJ
 /.idea
