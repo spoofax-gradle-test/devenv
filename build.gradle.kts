@@ -31,10 +31,12 @@ devenv {
 tasks {
   register("runSpoofaxCli") {
     group = "application"
+    description = "Runs 'spoofax.cli'."
     dependsOn(gradle.includedBuild("spoofax").task(":spoofax.cli:run"))
   }
   register("runSpoofaxEclipse") {
     group = "application"
+    description = "Runs an Eclipse instance with all features and plugins included in 'spoofax.eclipse.repository'."
     dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:run"))
   }
 
