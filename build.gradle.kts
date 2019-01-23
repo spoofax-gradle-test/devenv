@@ -1,38 +1,47 @@
+plugins {
+  id("org.metaborg.gradle.config.devenv") version "0.5.0"
+}
+
+devenv {
+  repoUrlPrefix = "git@github.com:spoofax-gradle-test"
+
+  // Gradle plugins.
+  registerRepo("gradle.config")
+  registerRepo("gitonium")
+  registerRepo("coronium")
+
+  // Libraries and applications.
+  registerRepo("log")
+  registerRepo("pie")
+  registerRepo("spoofax")
+  registerRepo("spoofax.eclipse")
+  
+  // Continuous integration.
+  registerRepo("jenkins.pipeline")
+}
+
+devenv {
+  registerCompositeBuildTask("cleanAll", "Deletes the build directory for all projects in the composite build.")
+  registerCompositeBuildTask("checkAll", "Runs all checks for all projects in the composite build.")
+  registerCompositeBuildTask("assembleAll", "Assembles the outputs for all projects in the composite build.")
+  registerCompositeBuildTask("buildAll", "Assembles and tests all projects in the composite build.")
+  registerCompositeBuildTask("publishAll", "Publishes all publications produced by all projects in the composite build.")
+}
+
 tasks {
-  register("buildAll") {
-    dependsOn(gradle.includedBuilds.map { it.task(":buildAll") })
-  }
-  register("cleanAll") {
-    dependsOn(gradle.includedBuilds.map { it.task(":cleanAll") })
-  }
-
-  register("buildGitonium") {
-    dependsOn(gradle.includedBuild("gitonium").task(":buildAll"))
-  }
-  register("buildCoronium") {
-    dependsOn(gradle.includedBuild("coronium").task(":buildAll"))
-  }
-
   register("runSpoofaxCli") {
+    group = "application"
+    description = "Runs 'spoofax.cli'."
     dependsOn(gradle.includedBuild("spoofax").task(":spoofax.cli:run"))
   }
   register("runSpoofaxEclipse") {
+    group = "application"
+    description = "Runs an Eclipse instance with all features and plugins included in 'spoofax.eclipse.repository'."
     dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:run"))
   }
 
-  register("spoofaxEclipseRepositoryDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.repository:dependencies"))
-  }
-  register("spoofaxEclipseFeatureDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.feature:dependencies"))
-  }
-  register("spoofaxEclipseMetaFeatureDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.meta.feature:dependencies"))
-  }
-  register("spoofaxEclipsePluginDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.plugin:dependencies"))
-  }
-  register("spoofaxEclipseMetaPluginDependencies") {
-    dependsOn(gradle.includedBuild("spoofax.eclipse").task(":spoofax.eclipse.meta.plugin:dependencies"))
+  wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    setJarFile(".gradlew/wrapper/gradle-wrapper.jar")
   }
 }
