@@ -42,6 +42,7 @@ tasks {
   }
 
   wrapper {
+    gradleVersion = "5.1.1"
     distributionType = Wrapper.DistributionType.ALL
     setJarFile(".gradlew/wrapper/gradle-wrapper.jar")
   }
