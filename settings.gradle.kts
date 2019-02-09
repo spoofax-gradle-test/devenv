@@ -13,3 +13,11 @@ rootDir.list().forEach {
     includeBuild(it)
   }
 }
+
+// HACK: Temporarily include builds from spoofax.gradle, because IntelliJ does not support nested composite builds yet.
+if(File(rootDir, "spoofax.gradle/example/langspecs/calc").isDirectory) {
+  includeBuild("spoofax.gradle/example/langspecs/calc")
+}
+if(File(rootDir, "spoofax.gradle/example/langspecs/calc.lib").isDirectory) {
+  includeBuild("spoofax.gradle/example/langspecs/calc.lib")
+}
