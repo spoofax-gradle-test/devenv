@@ -19,3 +19,6 @@
 /.classpath
 /.factorypath
 /bin
+
+# Java
+*.hprof
